@@ -4,13 +4,15 @@ class SchoolClassesController < ApplicationController
   end
   
   def new
-    @school_class = SchoolClass.new
+
+    @school_class = SchoolClass.new(school_class_params)
   end
 
   def create
+    # byebug
     @school_class = SchoolClass.new(school_class_params)
     @school_class.save
-    redirect_to school_classes_show_path(@school_class)
+    redirect_to school_classes_path(@school_class)
   end
 
 
@@ -27,6 +29,6 @@ class SchoolClassesController < ApplicationController
   private
     def school_class_params
 
-      params.require(:school_class).permit!
+      params.require(:school_class).permit
     end
 end
